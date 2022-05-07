@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block additional_styles %}
+<style>
+   body {
+    background-image: url(https://papers.co/wallpaper/papers.co-vk39-rainbow-abstract-colors-pattern-29-wallpaper.jpg);
+    background-size: cover;
+   }
+</style>
+{% endblock %}
+{% block body %}
+    {% comment %} <a href="{% url 'feed:index' %}">&larr; Go back</a> {% endcomment %}
+    <div class="row">
+        <div class="col-sm-10 offset-sm-1 py-4 text-center text-light text_shadow">
+            <h2>{{ object.title }}</h2>
+            <p>{{ object.text }}</p>
+            <h5>Posted on: {{ object.post_date }}</h5>
+            <img src="{{ object.image.url }}" class="img-fluid rounded bg-body shadow">
+        </div>
+    </div>
+{% endblock %}

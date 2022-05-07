@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% load thumbnail %}
+{% block title %}Search{% endblock %}
+{% block body %}
+
+
+<div class="row">
+    {% for post in object_list %}
+        <div class="col-sm-6 col-md-3">
+            <div class="card my-4">
+            <a href="{% url 'feed:detail' post.id %}"
+                style="display: inline-block">
+                {% thumbnail post.image "200x200" crop="center" as im %}
+            <img src="{{ im.url }}" class="card-img-top" />
+            {% endthumbnail %} 
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">
+                <h4>{{ post.title }}</h4>
+                </h5>
+                <p class="card-text">{{ post.text }}</p>
+                <a href="{% url 'feed:detail' post.id %}" class="btn btn-primary"
+                >Click for the details</a>
+                <p class="pt-3">Created: {{ post.post_date }}</p>
+                </div>
+            </div>
+        </div>
+
+    {% empty %}
+        <div class="col-sm-6 offset-3 py-5 my-5">
+            <h3 class="text-light">No results have been found!</h3>
+            
+            <h4 class="text-light">Try again.</h4>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

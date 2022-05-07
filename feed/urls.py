@@ -1,0 +1,10 @@
+from django.urls import path
+from .views import HomePageView, PostDetailView, AddPostView, SearchResultsView
+app_name = 'feed'
+
+urlpatterns = [
+    path('', HomePageView.as_view(), name='index'),
+    path('info/<int:pk>/', PostDetailView.as_view(), name='detail'),
+    path('post/', AddPostView.as_view(), name='post'),
+    path('search/', SearchResultsView.as_view(), name="search_results"),
+]

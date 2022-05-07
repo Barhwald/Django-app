@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'The Girl Next Door';
+    src: local('The Girl Next Door'),
+         url('https://fonts.googleapis.com/css2?family=The+Girl+Next+Door&display=swap') format("truetype");
+  }
+
+.text_shadow {
+    text-shadow: 1px 1px 6px black;
+}
+
+#navbarNav {
+    justify-content: space-evenly;
+}
+
+.header_h5 {
+    font-family: 'The Girl Next Door', cursive;
+}

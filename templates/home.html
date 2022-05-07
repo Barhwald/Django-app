@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% load thumbnail %}
+{% block title %}My awesome homepage{% endblock %}
+{% block body %}
+{% comment %}
+<a href="{% url 'feed:post' %}">Add a new post &rarr;</a> {% endcomment %}
+{% comment %} <h1>Hello world</h1>
+<p>Stuff here from home.html</p> {% endcomment %}
+<div class="row justify-content-center my-4">
+    <div class="col-6">
+        <h1 class="text-center text-light text_shadow display-2 fw-normal">Your posts</h1>
+    </div>
+</div>
+
+<div class="row">
+    {% for post in posts%}
+        <div class="col-sm-6 col-md-3">
+            <div class="card my-4">
+            <a href="{% url 'feed:detail' post.id %}"
+                style="display: inline-block">
+                {% thumbnail post.image "200x200" crop="center" as im %}
+            <img src="{{ im.url }}" class="card-img-top" />
+            {% endthumbnail %} 
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">
+                <h4>{{ post.title }}</h4>
+                </h5>
+                <p class="card-text">{{ post.text }}</p>
+                <a href="{% url 'feed:detail' post.id %}" class="btn btn-success"
+                >Click for the details</a>
+                <p class="pt-3">Created: {{ post.post_date }}</p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-sm-6 offset-3 text-center py-5 my-5">
+            <h3 class="text-light">Welcome!</h3>
+            <p class="text-light">How about you added your first image?</p>
+            <a href="/post" class="btn btn-lg btn-success">Upload image</a>
+            <h4 class="text-light">It's {% now 'd.m.Y' %} today</h4>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
